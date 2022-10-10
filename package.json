@@ -1,9 +1,11 @@
 {
   "name": "techishiring-twitter-bot-v2",
-  "version": "1.0.0",
-  "description": "Twitter bot that powers the hashtag #TechIsHiring",
+  "version": "2.0.0",
+  "description": "The Twitter bot that powers the hashtag #TechIsHiring",
   "main": "bot.js",
   "scripts": {
+    "start": "node dist/bot",
+    "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,5 +13,11 @@
     "url": "https://github.com/TechIsHiring/techishiring-twitter-bot-v2"
   },
   "author": "Chad Stewart",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "twitter-api-v2": "^1.12.8"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
 }
