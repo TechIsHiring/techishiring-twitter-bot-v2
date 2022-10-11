@@ -5,7 +5,7 @@
   "main": "bot.js",
   "scripts": {
     "start": "node dist/bot",
-    "build": "npx tsc",
+    "build": "npx tsc && cp config/config.env dist/config/config.env",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

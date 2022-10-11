@@ -1,7 +1,8 @@
 import { TwitterApi } from "twitter-api-v2";
 import * as dotenv from "dotenv";
+import path from "path";
 
-dotenv.config({ path: "./config.env"});
+dotenv.config({ path: path.join(__dirname, "config.env") });
 
 const twitterClient = new TwitterApi({
   appKey: process.env.API_KEY,
@@ -9,3 +10,5 @@ const twitterClient = new TwitterApi({
   accessToken: process.env.ACCESS_TOKEN,
   accessSecret: process.env.ACCESS_TOKEN_SECRET
 });
+
+twitterClient.v1.tweet("#TestIsHiring");
