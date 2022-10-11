@@ -11,4 +11,4 @@ const twitterClient = new TwitterApi({
   accessSecret: process.env.ACCESS_TOKEN_SECRET
 });
 
-twitterClient.v1.tweet("#TestIsHiring");
+export default twitterClient;
