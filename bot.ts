@@ -9,7 +9,7 @@ const initializeBot = async () => {
   let banList = await initializeBanList();
 
   const stream = await twitterClient.v1.filterStream({
-    track: "#TestIsHiring",
+    track: "#TechIsHiring",
     autoConnect: true
   });
 
