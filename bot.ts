@@ -26,7 +26,7 @@ const initializeBot = async () => {
     } */
   });
 
-  setInterval(async () => banList = await initializeBanList(), 1800000);
+  //setInterval(async () => banList = await initializeBanList(), 1800000);
 
 };
 
