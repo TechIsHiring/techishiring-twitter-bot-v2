@@ -32,4 +32,4 @@ const initializeBot = async () => {
 
 //initializeBot();
 
-setInterval(() => console.log("hello"), 600000);
+console.log("hello");
