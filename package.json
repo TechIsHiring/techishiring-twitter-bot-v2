@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node dist/bot.js",
     "build": "npx tsc && cp config/config.env dist/config/config.env",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm ci && npx tsc"
   },
   "repository": {
     "type": "git",

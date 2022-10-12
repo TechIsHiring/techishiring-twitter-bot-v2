@@ -18,8 +18,9 @@ const initializeBot = async () => {
 
     const notTechIsHiringRetweet = tweet.user.id_str !== TECHISHIRINGTWITTERID;
     const notBanned = await checkIfBanned(tweet, banList);
+    const permittedTweet = notBanned && notTechIsHiringRetweet;
 
-    if(notBanned && notTechIsHiringRetweet){
+    if(permittedTweet){
       twitterClient.v1.post("favorites/create.json", { id: tweet.id_str });
       twitterClient.v1.post(`statuses/retweet/${tweet.id_str}.json`);
     }
@@ -29,4 +30,6 @@ const initializeBot = async () => {
 
 };
 
-initializeBot();
+//initializeBot();
+
+setInterval(() => console.log("hello"), 600000);
