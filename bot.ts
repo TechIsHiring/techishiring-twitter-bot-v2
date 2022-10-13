@@ -6,7 +6,7 @@ const TECHISHIRINGTWITTERID = "1392543731866390531"
 
 const initializeBot = async () => {
 
-  /* let banList = await initializeBanList();
+  let banList = await initializeBanList();
 
   const stream = await twitterClient.v1.filterStream({
     track: "#TechIsHiring",
@@ -29,14 +29,16 @@ const initializeBot = async () => {
     const permittedTweet = notBanned && notTechIsHiringRetweet;
 
     if(permittedTweet){
-      await twitterClient.v1.post("favorites/create.json", { id: tweet.id_str });
-      await twitterClient.v1.post(`statuses/retweet/${tweet.id_str}.json`);
+      try {
+        await twitterClient.v1.post("favorites/create.json", { id: tweet.id_str });
+        await twitterClient.v1.post(`statuses/retweet/${tweet.id_str}.json`);
+      } catch (error) {
+        console.log(error);
+      }
     }
   });
 
-  setInterval(async () => banList = await initializeBanList(), 1800000); */
-
-  setInterval(() => "Hello!", 6000000);
+  setInterval(async () => banList = await initializeBanList(), 1800000);
 
 };
 
