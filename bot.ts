@@ -14,8 +14,6 @@ const initializeBot = async () => {
   });
 
   stream.on(ETwitterStreamEvent.Data, async (tweet) => {
-    
-    console.log(tweet);
 
     let notTechIsHiringRetweet;
 
@@ -33,7 +31,7 @@ const initializeBot = async () => {
         await twitterClient.v1.post("favorites/create.json", { id: tweet.id_str });
         await twitterClient.v1.post(`statuses/retweet/${tweet.id_str}.json`);
       } catch (error) {
-        console.log(error);
+        
       }
     }
   });
