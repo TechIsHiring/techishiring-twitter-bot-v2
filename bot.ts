@@ -6,7 +6,7 @@ const TECHISHIRINGTWITTERID = "1392543731866390531"
 
 const initializeBot = async () => {
 
-  let banList = await initializeBanList();
+  /* let banList = await initializeBanList();
 
   const stream = await twitterClient.v1.filterStream({
     track: "#TechIsHiring",
@@ -34,8 +34,10 @@ const initializeBot = async () => {
     }
   });
 
-  setInterval(async () => banList = await initializeBanList(), 1800000);
+  setInterval(async () => banList = await initializeBanList(), 1800000); */
+
+  setInterval(() => "Hello!", 6000000);
 
 };
 
-//initializeBot();
+initializeBot();
