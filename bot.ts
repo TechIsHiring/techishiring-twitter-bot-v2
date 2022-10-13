@@ -14,7 +14,6 @@ const initializeBot = async () => {
   });
 
   stream.on(ETwitterStreamEvent.Data, async (tweet) => {
-    console.log(tweet);
 
     const notTechIsHiringRetweet = tweet.user.id_str !== TECHISHIRINGTWITTERID;
     const notBanned = await checkIfBanned(tweet, banList);
