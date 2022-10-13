@@ -29,8 +29,12 @@ const initializeBot = async () => {
     const permittedTweet = notBanned && notTechIsHiringRetweet;
 
     if(permittedTweet){
-      twitterClient.v1.post("favorites/create.json", { id: tweet.id_str });
-      twitterClient.v1.post(`statuses/retweet/${tweet.id_str}.json`);
+      try {
+        twitterClient.v1.post("favorites/create.json", { id: tweet.id_str });
+        twitterClient.v1.post(`statuses/retweet/${tweet.id_str}.json`);
+      } catch (error) {
+        console.log(error);
+      }
     }
   });
 
