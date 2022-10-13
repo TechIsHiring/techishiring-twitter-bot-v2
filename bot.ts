@@ -14,6 +14,8 @@ const initializeBot = async () => {
   });
 
   stream.on(ETwitterStreamEvent.Data, async (tweet) => {
+    
+    console.log(tweet);
 
     let notTechIsHiringRetweet;
 
