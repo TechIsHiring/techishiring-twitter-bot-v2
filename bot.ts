@@ -17,8 +17,9 @@ const initializeBot = async () => {
 
     let notTechIsHiringRetweet;
 
-    if(tweet.retweeted) {
-      notTechIsHiringRetweet = (tweet.retweeted_status?.user.id_str !== TECHISHIRINGTWITTERID) || (tweet.user.id_str !== TECHISHIRINGTWITTERID);
+    if(tweet.retweeted_status) {
+      notTechIsHiringRetweet =
+        (tweet.retweeted_status?.user.id_str !== TECHISHIRINGTWITTERID) || (tweet.user.id_str !== TECHISHIRINGTWITTERID);
     } else {
       notTechIsHiringRetweet = tweet.user.id_str !== TECHISHIRINGTWITTERID;
     }

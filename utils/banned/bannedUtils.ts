@@ -3,9 +3,13 @@ import twitterClient from "../../config/config";
 
 export const initializeBanList = async () => {
   
-  const mutedUsersList = (await twitterClient.v1.listMutedUserIds()).ids;
-  const banList = new Set(mutedUsersList);
-  return banList;
+  try{
+    const mutedUsersList = (await twitterClient.v1.listMutedUserIds()).ids;
+    const banList = new Set(mutedUsersList);
+    return banList;
+  } catch (error) {
+    return new Set("");
+  }
 
 };
 
