@@ -14,16 +14,10 @@ const initializeBot = async () => {
   });
 
   stream.on(ETwitterStreamEvent.Data, async (tweet) => {
+    
+    console.log(tweet);
 
-    let notTechIsHiringRetweet;
-
-    if(tweet.retweeted_status) {
-      notTechIsHiringRetweet =
-        (tweet.retweeted_status?.user.id_str !== TECHISHIRINGTWITTERID) || (tweet.user.id_str !== TECHISHIRINGTWITTERID);
-    } else {
-      notTechIsHiringRetweet = tweet.user.id_str !== TECHISHIRINGTWITTERID;
-    }
-
+    const notTechIsHiringRetweet = tweet.user.id_str !== TECHISHIRINGTWITTERID;
     const notBanned = await checkIfBanned(tweet, banList);
     const permittedTweet = notBanned && notTechIsHiringRetweet;
 
@@ -32,7 +26,7 @@ const initializeBot = async () => {
         await twitterClient.v1.post("favorites/create.json", { id: tweet.id_str });
         await twitterClient.v1.post(`statuses/retweet/${tweet.id_str}.json`);
       } catch (error) {
-        
+        console.log(error);
       }
     }
   });
