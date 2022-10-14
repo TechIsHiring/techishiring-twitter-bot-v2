@@ -31,7 +31,7 @@ const initializeBot = async () => {
       }
     }
 
-    console.log(`This tweet was not a permitted tweet: ${tweet}`);
+    console.log(`This tweet was not a permitted tweet: ${tweet.id_str}`);
   });
 
   setInterval(async () => banList = await initializeBanList(), 1800000);
