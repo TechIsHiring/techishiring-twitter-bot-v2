@@ -8,6 +8,7 @@ export const initializeBanList = async () => {
     const banList = new Set(mutedUsersList);
     return banList;
   } catch (error) {
+    console.log(error);
     return new Set("");
   }
 
