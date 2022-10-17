@@ -14,8 +14,6 @@ const initializeBot = async () => {
   });
 
   stream.on(ETwitterStreamEvent.Data, async (tweet) => {
-    
-    console.log(tweet);
 
     const notBanned = await checkIfBanned(tweet, banList);
 
@@ -25,7 +23,7 @@ const initializeBot = async () => {
         await twitterClient.v1.post(`statuses/retweet/${tweet.id_str}.json`);
         return
       } catch (error) {
-        console.log(error);
+        return console.log(error);
       }
     }
 
