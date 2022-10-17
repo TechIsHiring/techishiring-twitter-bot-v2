@@ -17,11 +17,9 @@ const initializeBot = async () => {
     
     console.log(tweet);
 
-    const notTechIsHiringRetweet = tweet.user.id_str !== TECHISHIRINGTWITTERID;
     const notBanned = await checkIfBanned(tweet, banList);
-    const permittedTweet = notBanned && notTechIsHiringRetweet;
 
-    if(permittedTweet){
+    if(notBanned){
       try {
         await twitterClient.v1.post("favorites/create.json", { id: tweet.id_str });
         await twitterClient.v1.post(`statuses/retweet/${tweet.id_str}.json`);
