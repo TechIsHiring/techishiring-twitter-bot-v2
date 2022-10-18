@@ -13,7 +13,12 @@ const initializeBot = async () => {
     autoConnect: true
   });
 
+  stream.autoReconnect = true;
+  stream.keepAliveTimeoutMs = Infinity;
+
   stream.on(ETwitterStreamEvent.Data, async (tweet) => {
+
+    console.log(tweet);
 
     const notBanned = await checkIfBanned(tweet, banList);
 
