@@ -2,8 +2,6 @@ import { ETwitterStreamEvent } from "twitter-api-v2";
 import twitterClient from "./config/config";
 import { initializeBanList, checkIfBanned } from "./utils/banned/bannedUtils";
 
-const TECHISHIRINGTWITTERID = "1392543731866390531"
-
 const initializeBot = async () => {
 
   let banList = await initializeBanList();
@@ -14,7 +12,6 @@ const initializeBot = async () => {
   });
 
   stream.autoReconnect = true;
-  stream.keepAliveTimeoutMs = Infinity;
 
   stream.on(ETwitterStreamEvent.Data, async (tweet) => {
 
