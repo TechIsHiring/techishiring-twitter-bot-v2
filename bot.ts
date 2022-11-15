@@ -29,8 +29,9 @@ const initializeBot = async () => {
     console.log(tweet);
 
     const notBanned = await checkIfBanned(tweet, banList);
+    const permitted = notBanned && tweet.data.text.toLowerCase().includes("#techishiring");
 
-    if(notBanned){
+    if(permitted){
       try {
         await v1TwitterClient.v1.post("favorites/create.json", { id: tweet.data.id });
         await v1TwitterClient.v1.post(`statuses/retweet/${tweet.data.id}.json`);
