@@ -1,4 +1,4 @@
-import { TweetV1 } from "twitter-api-v2";
+import { TweetV2SingleStreamResult } from "twitter-api-v2";
 import { v1TwitterClient } from "../../config/config";
 
 export const initializeBanList = async () => {
@@ -14,10 +14,6 @@ export const initializeBanList = async () => {
 
 };
 
-export const checkIfBanned = (tweet: TweetV1, banList: Set<string>) => {
-  if(tweet.retweeted_status) {
-    return !(banList.has(tweet.user.id_str) || banList.has(tweet.retweeted_status.user.id_str));
-  }
-
-  return !banList.has(tweet.user.id_str);
+export const checkIfBanned = (tweet: TweetV2SingleStreamResult, banList: Set<string>) => {
+  return !banList.has(tweet.data.author_id as string);
 }

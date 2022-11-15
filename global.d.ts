@@ -1,6 +1,5 @@
 namespace NodeJS {
   interface ProcessEnv {
-    APP_ENV: string;
     API_KEY: string;
     API_SECRET_KEY: string;
     ACCESS_TOKEN: string;
