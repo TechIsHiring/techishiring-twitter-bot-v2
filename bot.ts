@@ -14,7 +14,7 @@ const initializeBot = async () => {
 
   // Add our rules
   await v2TwitterClient.v2.updateStreamRules({
-    add: [{ value: "#TestIsHiring" }],
+    add: [{ value: "#TechIsHiring" }],
   });
 
   const stream = await v2TwitterClient.v2.searchStream({
