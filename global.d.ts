@@ -4,5 +4,6 @@ namespace NodeJS {
     API_SECRET_KEY: string;
     ACCESS_TOKEN: string;
     ACCESS_TOKEN_SECRET: string;
+    BEARER_TOKEN: string;
   }
 }
