@@ -1,10 +1,10 @@
 import { TweetV1 } from "twitter-api-v2";
-import twitterClient from "../../config/config";
+import { v1TwitterClient } from "../../config/config";
 
 export const initializeBanList = async () => {
   
   try{
-    const mutedUsersList = (await twitterClient.v1.listMutedUserIds()).ids;
+    const mutedUsersList = (await v1TwitterClient.v1.listMutedUserIds()).ids;
     const banList = new Set(mutedUsersList);
     return banList;
   } catch (error) {
