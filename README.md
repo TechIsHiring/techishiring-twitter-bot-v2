@@ -33,6 +33,7 @@ API_KEY=*Your API Key*
 API_SECRET_KEY=*Your API Secret Key*
 ACCESS_TOKEN=*Your Access Token*
 ACCESS_TOKEN_SECRET=*Your Access Token Secret*
+BEARER_TOKEN=*Your Bearer Token*
 ```
 
 Once completed, you can start the app by running the command:
