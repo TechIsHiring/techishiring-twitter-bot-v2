@@ -28,7 +28,7 @@ const initializeBot = async () => {
   stream.on(ETwitterStreamEvent.Data, async tweet => {
     console.log(tweet);
 
-    const notBanned = await checkIfBanned(tweet, banList);
+    const notBanned = await checkIfBanned(tweet.data.author_id ? tweet.data.author_id : "not banned" , banList);
     const permitted = notBanned && tweet.data.text.toLowerCase().includes("#techishiring");
 
     if(permitted){
@@ -44,7 +44,12 @@ const initializeBot = async () => {
     console.log(`This tweet was not a permitted tweet: ${tweet.data.id}`);
   });
 
-  setInterval(async () => banList = await initializeBanList(), 1800000);
+  setInterval(async () => {
+    const updatedBanList = await initializeBanList();
+
+    const isUpdated = !updatedBanList.has("");
+    if(isUpdated) banList = updatedBanList;
+  }, 1800000);
 
 };
 
