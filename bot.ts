@@ -1,6 +1,6 @@
 import { ETwitterStreamEvent } from "twitter-api-v2";
 import { v1TwitterClient, v2TwitterClient } from "./config/config";
-import { initializeBanList, checkIfBanned } from "./utils/banned/bannedUtils";
+import { initializeBanList, checkIfPermitted } from "./utils/banned/bannedUtils";
 
 const initializeBot = async () => {
 
@@ -28,14 +28,15 @@ const initializeBot = async () => {
   stream.on(ETwitterStreamEvent.Data, async tweet => {
     console.log(tweet);
 
-    const notBanned = await checkIfBanned(tweet.data.author_id ? tweet.data.author_id : "not banned" , banList);
+    const notBanned = checkIfPermitted(tweet.data.author_id ? tweet.data.author_id : "not banned" , banList)  &&
+                      tweet.includes ? tweet.includes.users?.every(user => checkIfPermitted(user.id, banList)) : true;
     const permitted = notBanned && tweet.data.text.toLowerCase().includes("#techishiring");
 
     if(permitted){
       try {
         await v1TwitterClient.v1.post("favorites/create.json", { id: tweet.data.id });
         await v1TwitterClient.v1.post(`statuses/retweet/${tweet.data.id}.json`);
-        return
+        return;
       } catch (error) {
         return console.log(error);
       }
