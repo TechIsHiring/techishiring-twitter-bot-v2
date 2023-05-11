@@ -1,9 +1,9 @@
 import { TwitterApi } from "twitter-api-v2";
 import * as dotenv from "dotenv";
-//import path from "path";
+import path from "path";
 
-//dotenv.config({ path: path.join(__dirname, "config.env") });
-dotenv.config({ path: "/etc/secrets/config.env" });
+dotenv.config({ path: path.join(__dirname, "config.env") });
+//dotenv.config({ path: "/etc/secrets/config.env" });
 
 export const v1TwitterClient = new TwitterApi({
   appKey: process.env.API_KEY,

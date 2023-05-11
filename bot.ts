@@ -28,9 +28,10 @@ const initializeBot = async () => {
   stream.on(ETwitterStreamEvent.Data, async tweet => {
     console.log(tweet);
 
-    const notBanned = checkIfPermitted(tweet.data.author_id ? tweet.data.author_id : "not banned" , banList)  &&
-                        tweet.includes ? tweet.includes.users?.every(user => checkIfPermitted(user ? user.id : "not banned", banList))
-                        : true;
+    const notBanned = checkIfPermitted(tweet.data.author_id, banList) &&
+                          tweet.includes?.users ?
+                            tweet.includes?.users?.every(user => checkIfPermitted(user.id, banList)) :
+                          true;
     const permitted = notBanned && tweet.data.text.toLowerCase().includes("#techishiring");
 
     if(permitted){
