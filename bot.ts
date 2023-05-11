@@ -29,7 +29,8 @@ const initializeBot = async () => {
     console.log(tweet);
 
     const notBanned = checkIfPermitted(tweet.data.author_id ? tweet.data.author_id : "not banned" , banList)  &&
-                      tweet.includes ? tweet.includes.users?.every(user => checkIfPermitted(user.id, banList)) : true;
+                        tweet.includes ? tweet.includes.users?.every(user => checkIfPermitted(user ? user.id : "not banned", banList))
+                        : true;
     const permitted = notBanned && tweet.data.text.toLowerCase().includes("#techishiring");
 
     if(permitted){
