@@ -13,6 +13,7 @@ export const initializeBanList = async () => {
 
 };
 
-export const checkIfPermitted = (userId: string, banList: Set<string>) => {
+export const checkIfPermitted = (userId: string | undefined, banList: Set<string>) => {
+  if(!userId) return true;
   return !banList.has(userId);
 }
