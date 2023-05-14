@@ -1,6 +1,6 @@
 import { ETwitterStreamEvent } from "twitter-api-v2";
 import { v1TwitterClient, v2TwitterClient } from "./config/config";
-import { initializeBanList, checkIfPermitted } from "./utils/banned/bannedUtils";
+import { initializeBanList, checkIfBanned } from "./utils/banned/bannedUtils";
 import http from "http";
 
 const initializeBot = async () => {
@@ -34,12 +34,12 @@ const initializeBot = async () => {
   
   stream.on(ETwitterStreamEvent.Data, async tweet => {
     console.log(tweet);
+    console.log(tweet.includes);
 
-    const notBanned = checkIfPermitted(tweet.data.author_id, banList) &&
-                          tweet.includes?.users ?
-                            tweet.includes?.users?.every(user => checkIfPermitted(user.id, banList)) :
-                          true;
-    const permitted = notBanned && tweet.data.text.toLowerCase().includes("#techishiring");
+    const banned = checkIfBanned(tweet.data.author_id, banList) ||
+                   tweet.includes?.tweets?.some(tweet => checkIfBanned(tweet.author_id, banList));
+
+    const permitted = !banned && tweet.data.text.toLowerCase().includes("#techishiring");
 
     if(permitted){
       try {
@@ -51,7 +51,7 @@ const initializeBot = async () => {
       }
     }
 
-    console.log(`This tweet was not a permitted tweet: ${tweet.data.id}`);
+    return console.log(`This tweet was not a permitted tweet: ${tweet.data.id}`);
   });
 
   setInterval(async () => {
